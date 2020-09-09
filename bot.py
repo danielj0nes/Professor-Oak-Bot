@@ -15,7 +15,7 @@ def read_token():
         return token[0].strip()
 
 
-bot = commands.Bot(command_prefix="!")
+bot = commands.Bot(command_prefix="!")  # ;-)
 tkn = read_token()
 
 
