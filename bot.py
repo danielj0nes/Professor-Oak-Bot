@@ -1,26 +1,35 @@
 """danielj"""
-
+# https://discordapp.com/oauth2/authorize?client_id=753011266187952288&scope=bot&permissions=8
 import discord
 from discord.ext import commands
-from discord.utils import get
-import asyncio
-import sqlite3
-from datetime import datetime
+from pathlib import Path
 
-# https://discordapp.com/oauth2/authorize?client_id=753011266187952288&scope=bot&permissions=8
+print(f"Using discord.py version {discord.__version__}")
+client = commands.Bot(command_prefix=".")  # Add scope prefix changing
 
-def read_token():
-    with open("token.txt", "r") as f:
-        token = f.readlines()
-        return token[0].strip()
+with open("token.txt", "r") as f:
+    tkn = f.readline()
 
 
-bot = commands.Bot(command_prefix="!")  # ;-)
-tkn = read_token()
+@client.command()
+async def load(ctx, extension):
+    client.load_extension(f"cogs.{extension}")
 
 
-@bot.command()
-async def t(ctx):
-    pass
+@client.command()
+async def reload(ctx, extension):
+    client.unload_extension(f"cogs.{extension}")
+    client.load_extension(f"cogs.{extension}")
 
-bot.run(tkn)
+for cog in Path("cogs/").iterdir():
+    if cog.suffix == ".py":
+        client.load_extension(f"cogs.{cog.stem}")
+
+
+@client.event
+async def on_ready():
+    print(f"Logged in as {client.user}")
+    await client.change_presence(activity=discord.Game("PoKéMoN GO"))
+
+
+client.run(tkn)
