@@ -3,18 +3,20 @@ from discord.ext import commands
 from datetime import datetime
 
 
-class Raid(commands.Cog):
+class Raiding(commands.Cog):
 
     def __init__(self, client):
         self.client = client
 
     @commands.command()
     async def raid(self, ctx, pokemon, time, *gymname):
+        """Setup a raid. Example: !raid charizard 13:37 houses of parliament"""
         await ctx.channel.purge(limit=1)
         thumbnail = f"https://img.pokemondb.net/artwork/{pokemon.lower()}.jpg"
         gym_url = "+".join(gymname)
-        raid = discord.Embed(title=":house: Gym", url=f"https://www.google.com/maps/search/{gym_url}",
-                             description=" ".join(gymname), color=0x32cd32, timestamp=datetime.utcnow())
+        raid = discord.Embed(
+            title=":house: Gym", url=f"https://www.google.com/maps/search/{gym_url}",
+            description=" ".join(gymname), color=0x32cd32, timestamp=datetime.utcnow())
         raid.set_author(name=f"Raid polled by {ctx.message.author.nick}")
         raid.set_thumbnail(url=thumbnail)
         raid.add_field(name=":alarm_clock: Start time", value=time)
@@ -26,4 +28,4 @@ class Raid(commands.Cog):
 
 
 def setup(client):
-    client.add_cog(Raid(client))
+    client.add_cog(Raiding(client))
