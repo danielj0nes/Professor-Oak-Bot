@@ -1,4 +1,4 @@
-"""danielj"""
+"""https://github.com/DanielJ0nes/Professor-Oak-Bot/"""
 # https://discordapp.com/oauth2/authorize?client_id=753011266187952288&scope=bot&permissions=8
 import discord
 from database.db import SQL
@@ -19,13 +19,17 @@ async def on_guild_join(guild):
 
 @client.command()
 async def load(ctx, extension):
-    client.load_extension(f"cogs.{extension}")
+    """The load/reload functions are purely for debugging.
+    These allow for loading new / reloading existing extensions on the fly."""
+    if ctx.message.author.id == 93863518389932032:
+        client.load_extension(f"cogs.{extension}")
 
 
 @client.command()
 async def reload(ctx, extension):
-    client.unload_extension(f"cogs.{extension}")
-    client.load_extension(f"cogs.{extension}")
+    if ctx.message.author.id == 93863518389932032:
+        client.unload_extension(f"cogs.{extension}")
+        client.load_extension(f"cogs.{extension}")
 
 
 for cog in Path("cogs/").iterdir():

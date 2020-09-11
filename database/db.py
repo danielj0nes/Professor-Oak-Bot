@@ -12,7 +12,7 @@ class SQL:
 
     def add_prefix(self, guild, prefix):
         cur = self.conn.cursor()
-        cur.execute("INSERT INTO guilds (gid, command_prefix) VALUES (?, ?)", [str(guild), prefix])  # Default prefix
+        cur.execute("INSERT OR IGNORE INTO guilds (gid, command_prefix) VALUES (?, ?)", [str(guild), prefix])  # Default prefix
         self.conn.commit()
 
     def update_prefix(self, guild, prefix):
