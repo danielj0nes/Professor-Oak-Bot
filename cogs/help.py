@@ -10,6 +10,7 @@ class Help(commands.Cog):
     @commands.command()
     async def help(self, ctx, specific=None):
         """Displays this message"""
+        await ctx.message.delete()
         help_message = discord.Embed(color=0x8B008B)
         help_message.set_author(name="Professor Oak - Help", icon_url=self.client.user.avatar_url)
         for cog in self.client.cogs:
