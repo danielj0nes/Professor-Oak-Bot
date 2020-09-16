@@ -11,7 +11,8 @@ class Raiding(commands.Cog):
     @commands.command()
     @commands.has_permissions(mention_everyone=True)
     async def raid(self, ctx, pokemon, time, *gymname):
-        """Posts a Raid announcement to the current channel. **Example**: `!raid Charizard 13:37 buckingham palace`
+        """Posts a Raid announcement to the current channel.
+        **Example**: `!raid Charizard 13:37 buckingham palace`
         Requires the user to have the 'mention everyone' permission since @here will be tagged."""
         await ctx.message.delete()
         thumbnail = f"https://img.pokemondb.net/artwork/{pokemon.lower()}.jpg"
@@ -38,7 +39,8 @@ class Raiding(commands.Cog):
 
     @commands.command()
     async def exraid(self, ctx, pokemon, time, *gymname):
-        """Posts an EX Raid announcement to the current channel. **Example**: `!exraid Deoxys 14:20 times square`"""
+        """Posts an EX Raid announcement to the current channel.
+        **Example**: `!exraid Deoxys 14:20 times square`"""
         await ctx.message.delete()
         thumbnail = f"https://img.pokemondb.net/artwork/{pokemon.lower()}.jpg"
         gym_url = "+".join(gymname)

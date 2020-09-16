@@ -41,7 +41,7 @@ async def load(ctx, extension):
 
 @client.event
 async def on_message(message):
-    if "<@!753011266187952288>" in message.content:
+    if "<@!753011266187952288>" in message.content:  # Handle bot mentions
         server_prefix = sql.get_prefix(message, message)[0]
         await message.author.send(f"Hello trainer! To access my commands, start your message with"
                                   f"`{server_prefix}`. For more information, try `{server_prefix}help`.")

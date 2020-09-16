@@ -9,11 +9,11 @@ class Utility(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command()
+    @commands.command(aliases=["cp", "prefix"])
     @commands.has_permissions(administrator=True)
     async def change_prefix(self, ctx, prefix):
-        """Changes the command prefix of the bot for your server, requires administrator permissions. **Example**:
-        `!change_prefix .`"""
+        """Changes the command prefix of the bot for your server, requires administrator permissions.
+        **Example**: `!cp .`"""
         sql = SQL()
         sql.update_prefix(ctx.guild.id, prefix)
         msg = await ctx.send(f"The bot's command prefix has been changed to '{prefix}'.")

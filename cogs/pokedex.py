@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands
-from database.db import SQL
 import requests
 from datetime import datetime
 
@@ -33,7 +32,7 @@ class Pokedex(commands.Cog):
     @commands.command(aliases=["pd", "Pd", "Pokedex", "dex"])
     async def pokedex(self, ctx, pokemon, channel=""):
         """Look up a pokémon by name to return information such as the different moves and max cp.
-        Example `!pd pikachu`."""
+        **Example**: `!pd pikachu`."""
         data = self.poke_parser(pokemon)
         if data:
             pokedex_entry = discord.Embed(color=0xFF0000, timestamp=datetime.utcnow())
