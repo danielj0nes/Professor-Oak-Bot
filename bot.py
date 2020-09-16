@@ -8,7 +8,7 @@ from pathlib import Path
 sql = SQL()
 print(f"Using discord.py version {discord.__version__}")
 client = commands.Bot(command_prefix=sql.get_prefix)
-client.remove_command("help")
+client.remove_command("help")  # The bot has it's own custom help command, so the default help command is removed
 
 with open("token.txt", "r") as f:
     tkn = f.readline()
@@ -17,6 +17,15 @@ with open("token.txt", "r") as f:
 @client.event
 async def on_guild_join(guild):
     sql.add_prefix(guild.id, "!")  # Default prefix set upon bot joining the server
+
+
+@client.event
+async def on_message(message):
+    if "<@!753011266187952288>" in message.content:  # Handle bot mentions
+        server_prefix = sql.get_prefix(message, message)[0]
+        await message.channel.send(f"Hello trainer! To access my commands, start your message with "
+                                   f"`{server_prefix}`. For more information, try `{server_prefix}help`.")
+    await client.process_commands(message)
 
 
 @client.event
@@ -37,15 +46,6 @@ async def load(ctx, extension):
     if ctx.message.author.id == 93863518389932032:
         await ctx.message.delete()
         client.load_extension(f"cogs.{extension}")
-
-
-@client.event
-async def on_message(message):
-    if "<@!753011266187952288>" in message.content:  # Handle bot mentions
-        server_prefix = sql.get_prefix(message, message)[0]
-        await message.author.send(f"Hello trainer! To access my commands, start your message with"
-                                  f"`{server_prefix}`. For more information, try `{server_prefix}help`.")
-    await client.process_commands(message)
 
 
 @client.command()

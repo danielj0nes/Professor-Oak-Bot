@@ -14,11 +14,10 @@ class Utility(commands.Cog):
     async def change_prefix(self, ctx, prefix):
         """Changes the command prefix of the bot for your server, requires administrator permissions.
         **Example**: `!cp .`"""
+        await ctx.message.delete()
         sql = SQL()
         sql.update_prefix(ctx.guild.id, prefix)
-        msg = await ctx.send(f"The bot's command prefix has been changed to '{prefix}'.")
-        await asyncio.sleep(2)
-        await msg.delete()
+        await ctx.send(f"The bot's command prefix has been changed to `{prefix}`.")
 
 
 def setup(client):

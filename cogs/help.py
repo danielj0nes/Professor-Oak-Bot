@@ -18,7 +18,6 @@ class Help(commands.Cog):
         for cog in self.client.cogs:
             for command in self.client.get_cog(cog).get_commands():
                 help_message.add_field(name=str(command).capitalize(), value=command.help, inline=False)
-
         await ctx.message.author.send(embed=help_message)
 
 
