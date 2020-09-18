@@ -20,5 +20,6 @@ class Utility(commands.Cog):
         await ctx.send(f"The bot's command prefix has been changed to `{prefix}`.")
 
 
+
 def setup(client):
     client.add_cog(Utility(client))

@@ -1,4 +1,4 @@
-"""Daniel Jones"""
+"""Daniel Jones - daniel󠀀󠀀 󠀀󠀀󠀀󠀀󠀀󠀀#2819"""
 # https://discordapp.com/oauth2/authorize?client_id=753011266187952288&scope=bot&permissions=8
 import discord
 from database.db import SQL
@@ -6,25 +6,25 @@ from discord.ext import commands
 from pathlib import Path
 
 sql = SQL()
+TKN = ""  # Don't forget to remove this ;-)
 print(f"Using discord.py version {discord.__version__}")
 client = commands.Bot(command_prefix=sql.get_prefix)
 client.remove_command("help")  # The bot has it's own custom help command, so the default help command is removed
-
-with open("token.txt", "r") as f:
-    tkn = f.readline()
 
 
 @client.event
 async def on_guild_join(guild):
     sql.add_prefix(guild.id, "!")  # Default prefix set upon bot joining the server
+    await guild.text_channels[0].send(f"Hello trainers! To use a command, start your message with "
+                                      f"`!`. For a full list of commands, try `!help`.")
 
 
 @client.event
 async def on_message(message):
     if "<@!753011266187952288>" in message.content:  # Handle bot mentions
         server_prefix = sql.get_prefix(message, message)[0]
-        await message.channel.send(f"Hello trainer! To access my commands, start your message with "
-                                   f"`{server_prefix}`. For more information, try `{server_prefix}help`.")
+        await message.channel.send(f"Hello trainer! To use a command, start your message with "
+                                   f"`{server_prefix}`. For a full list of commands, try `{server_prefix}help`.")
     await client.process_commands(message)
 
 
@@ -67,4 +67,4 @@ async def on_ready():
     await client.change_presence(activity=discord.Game("PoKéMoN GO"))
 
 
-client.run(tkn)
+client.run(TKN)
