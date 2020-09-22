@@ -14,7 +14,7 @@ All Pokémon data is sourced from: https://raw.githubusercontent.com/pokemongo-d
 
 | Command | Example |
 | ---     | ---     |
-| **Help**      | The "help" command displays a list of all the commands the bot has access to. The data is dynamic and with the addition of a new command, will                                                update automatically.                                                                              !["Help" command example](etc/images/embed_help_message.PNG)|
+| **Help**      | The "help" command displays a list of all the commands the bot has access to. The data is dynamic and with the addition of a new command, will                                         update automatically. <br> !["Help" command example](etc/images/embed_help_message.PNG)|
 | **Pokedex**   | !["Pokedex" command example](etc/images/embed_pokedex.PNG)  |
 | **Best**      | !["Best" command example](etc/images/embed_iv_variants.PNG) |
 | **Raid**      | !["Raid" command example](etc/images/embed_raid.PNG)        |
