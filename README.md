@@ -12,7 +12,8 @@ All Pokémon data is sourced from: https://raw.githubusercontent.com/pokemongo-d
 
 ## Commands showcase
 
-| ------------- | ------------- |
+| Command | Example |
+| ---     | ---     |
 | **Help**      | !["Help" command example](etc/images/embed_help_message.PNG)|
 | **Pokedex**   | !["Pokedex" command example](etc/images/embed_pokedex.PNG)  |
 | **Best**      | !["Best" command example](etc/images/embed_iv_variants.PNG) |
