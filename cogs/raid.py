@@ -15,7 +15,7 @@ class Raiding(commands.Cog):
     async def raid(self, ctx, pokemon, time, *gymname):
         """Posts a Raid announcement to the current channel.
         **Example**: `!raid Charizard 13:37 buckingham palace`
-        Requires the user to have the 'mention everyone' permission since @here will be tagged."""
+        *Requires the user to have the 'mention everyone' permission since @here will be tagged*."""
         await ctx.message.delete()
         pokemon = pokemon.capitalize()
         try:

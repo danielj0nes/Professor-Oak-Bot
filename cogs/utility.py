@@ -12,8 +12,9 @@ class Utility(commands.Cog):
     @commands.command(aliases=["cp", "prefix"])
     @commands.has_permissions(administrator=True)
     async def change_prefix(self, ctx, prefix):
-        """Changes the command prefix of the bot for your server, requires administrator permissions.
-        **Example**: `!cp .`"""
+        """Changes the command prefix of the bot for your server.
+        **Example**: `!cp .`
+        *Requires administrator permissions*."""
         await ctx.message.delete()
         sql = SQL()
         sql.update_prefix(ctx.guild.id, prefix)
