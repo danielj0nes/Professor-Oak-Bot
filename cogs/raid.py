@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands
-import requests
 from datetime import datetime
 from etc.poke_dict import poke_dict
 

@@ -1,7 +1,5 @@
-import discord
 from database.db import SQL
 from discord.ext import commands
-import asyncio
 
 
 class Utility(commands.Cog):
