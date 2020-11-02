@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands
-import requests
 from datetime import datetime
 from etc.poke_dict import poke_dict
 
@@ -17,7 +16,6 @@ class Calculator(commands.Cog):
     async def iv(self, ctx, attack: int, defence: int, hp: int):
         """Calculates the IV of a Pokemon given the attack, defence, and HP values found on the appraisal screen.
         **Example**: `!iv 15 14 13`"""
-        await ctx.message.delete()
         if [False for i in (attack, defence, hp) if i < 0 or i > 15]:
             await ctx.author.send("One or more values are invalid. Attack, defence, and hp can be between 0 - 15.")
         else:
@@ -27,10 +25,10 @@ class Calculator(commands.Cog):
     async def best(self, ctx, pokemon, channel=""):
         """Calculates and displays 100 IV variants of a Pokemon at a certain level.
         **Example**: `!best Rayquaza` or `!best Rayquaza public` (to display in the current channel)."""
-        await ctx.message.delete()
         try:
             pokemon = pokemon.capitalize()
-            stats = [i + 15 for i in poke_dict[pokemon]["base_stats"]]  # 15 is for perfect IV, considering user variables
+            stats = [i + 15 for i in
+                     poke_dict[pokemon]["base_stats"]]  # 15 is for perfect IV, considering user variables
             dex_no = poke_dict[pokemon]["id_no"]
             icon = "https://static.wikia.nocookie.net/pokemongo_gamepedia_en/images/6/67/Button_poke_menu.png/"
             thumbnail = f"https://images.gameinfo.io/pokemon/256/{dex_no.zfill(3)}-00.png"

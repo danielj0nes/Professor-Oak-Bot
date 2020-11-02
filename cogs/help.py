@@ -9,9 +9,8 @@ class Help(commands.Cog):
 
     @commands.command()
     async def help(self, ctx):
-        """Displays th  is message.
+        """Displays this message.
         **Example**: `!help`"""
-        await ctx.message.delete()
         help_message = discord.Embed(color=0x8B008B)
         help_message.set_author(name="Professor Oak - Help", icon_url=self.client.user.avatar_url)
         help_message.add_field(name="\u200b", value="Got a question? Want a specific feature added to the bot? "

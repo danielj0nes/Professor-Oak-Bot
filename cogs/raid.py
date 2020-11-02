@@ -15,7 +15,6 @@ class Raiding(commands.Cog):
         """Posts a Raid announcement to the current channel.
         **Example**: `!raid Charizard 13:37 buckingham palace`
         *Requires the user to have the 'mention everyone' permission since @here will be tagged*."""
-        await ctx.message.delete()
         pokemon = pokemon.capitalize()
         try:
             pokemon_id = poke_dict[pokemon]['id_no']
@@ -26,11 +25,11 @@ class Raiding(commands.Cog):
         raid = discord.Embed(
             title=":house: Gym", url=f"https://www.google.com/maps/search/{'+'.join(gymname)}",
             description=" ".join(gymname), color=0x32cd32, timestamp=datetime.utcnow())
-        raid.set_author(name=f"Raid polled by {ctx.message.author.nick}", icon_url=ctx.message.author.avatar_url)
+        raid.set_author(name=f"Raid polled by {ctx.message.author}", icon_url=ctx.message.author.avatar_url)
         raid.set_thumbnail(url=thumbnail)
         raid.add_field(name=":alarm_clock: Start time", value=time)
         raid.add_field(name=":dragon_face: Pokémon / Difficulty", value=pokemon)
-        raid.set_footer(text=f"Thanks to {ctx.message.author.nick} for polling the Raid. "
+        raid.set_footer(text=f"Thanks to {ctx.message.author} for polling the Raid. "
                              f"Please react to this message to indicate your attendance.")
         msg = await ctx.send(embed=raid)
         await msg.add_reaction("🤚")
@@ -38,7 +37,6 @@ class Raiding(commands.Cog):
 
     @raid.error
     async def raid_error_handler(self, ctx, error):
-        await ctx.message.delete()
         if isinstance(error, commands.MissingPermissions):
             await ctx.author.send("The 'raid' command requires you to have the "
                                   "'mention everyone' permission, which you do not have.")
@@ -47,7 +45,6 @@ class Raiding(commands.Cog):
     async def ex_raid(self, ctx, pokemon, time, *gym_name):
         """Posts an EX Raid announcement to the current channel.
         **Example**: `!exraid Deoxys 14:20 times square`"""
-        await ctx.message.delete()
         pokemon = pokemon.capitalize()
         try:
             pokemon_id = poke_dict[pokemon]['id_no']
@@ -58,11 +55,11 @@ class Raiding(commands.Cog):
         ex_raid_embed = discord.Embed(
             title=":house: Gym", url=f"https://www.google.com/maps/search/{'+'.join(gym_name)}",
             description=" ".join(gym_name), color=0x8B008B, timestamp=datetime.utcnow())
-        ex_raid_embed.set_author(name=f"EX Raid polled by {ctx.message.author.nick}", icon_url=ctx.message.author.avatar_url)
+        ex_raid_embed.set_author(name=f"EX Raid polled by {ctx.message.author}", icon_url=ctx.message.author.avatar_url)
         ex_raid_embed.set_thumbnail(url=thumbnail)
         ex_raid_embed.add_field(name=":alarm_clock: Start time", value=time)
         ex_raid_embed.add_field(name=":dragon_face: Pokémon / Difficulty", value=pokemon)
-        ex_raid_embed.set_footer(text=f"Thanks to {ctx.message.author.nick} for polling the EX Raid. "
+        ex_raid_embed.set_footer(text=f"Thanks to {ctx.message.author} for polling the EX Raid. "
                                f"Please react to this message to indicate your attendance.")
         msg = await ctx.send(embed=ex_raid_embed)
         await msg.add_reaction("🤚")

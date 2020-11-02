@@ -14,7 +14,6 @@ class Events(commands.Cog):
     async def event(self, ctx, channel="", all=""):
         """Displays a list of current and upcoming Pokémon GO events.
         **Example**: `!event`."""
-        await ctx.message.delete()
         counter = 0
         URL = "https://leekduck.com/events/"
         page_source = requests.get(URL)

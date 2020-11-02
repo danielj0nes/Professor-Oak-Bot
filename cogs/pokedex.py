@@ -13,7 +13,6 @@ class Pokedex(commands.Cog):
     async def pokedex(self, ctx, pokemon, channel=""):
         """Look up a Pokemon by name to return information such as the different moves and max cp.
         **Example**: `!pd Pikachu` or `!pd Pikachu public` (to display in the current channel)."""
-        await ctx.message.delete()
         pokemon = pokemon.capitalize()
         try:
             poke_details = poke_dict[pokemon]

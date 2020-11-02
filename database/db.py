@@ -19,3 +19,8 @@ class SQL:
         cur = self.conn.cursor()
         cur.execute("UPDATE guilds SET (command_prefix) = (?) WHERE (gid) = (?)", [prefix, str(guild)])
         self.conn.commit()
+
+    def add_new_player(self, ctx, pokemon):
+        cur = self.conn.cursor()
+        cur.execute("INSERT OR IGNORE INTO game (uid, pokemon) VALUES (?, ?)", [str(ctx.message.id), pokemon])
+        self.conn.commit()

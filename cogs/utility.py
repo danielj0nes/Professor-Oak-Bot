@@ -13,11 +13,9 @@ class Utility(commands.Cog):
         """Changes the command prefix of the bot for your server.
         **Example**: `!cp .`
         *Requires administrator permissions*."""
-        await ctx.message.delete()
         sql = SQL()
         sql.update_prefix(ctx.guild.id, prefix)
         await ctx.send(f"The bot's command prefix has been changed to `{prefix}`.")
-
 
 
 def setup(client):

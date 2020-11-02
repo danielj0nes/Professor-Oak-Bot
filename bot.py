@@ -1,4 +1,3 @@
-"""Daniel Jones - daniel󠀀󠀀 󠀀󠀀󠀀󠀀󠀀󠀀#2819"""
 # https://discordapp.com/oauth2/authorize?client_id=753011266187952288&scope=bot&permissions=8
 import discord
 from database.db import SQL
@@ -36,6 +35,9 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.message.author.send(error)
         return
+    if isinstance(error, commands.CommandInvokeError):
+        await ctx.message.author.send("The bot is missing required permissions.")
+        return
     raise error
 
 
@@ -44,14 +46,12 @@ async def load(ctx, extension):
     """The load/reload functions are purely for debugging.
     These allow for loading new / reloading existing extensions on the fly."""
     if ctx.message.author.id == 93863518389932032:
-        await ctx.message.delete()
         client.load_extension(f"cogs.{extension}")
 
 
 @client.command()
 async def reload(ctx, extension):
     if ctx.message.author.id == 93863518389932032:
-        await ctx.message.delete()
         client.unload_extension(f"cogs.{extension}")
         client.load_extension(f"cogs.{extension}")
 
