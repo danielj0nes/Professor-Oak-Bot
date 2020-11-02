@@ -5,7 +5,7 @@ from discord.ext import commands
 from pathlib import Path
 
 sql = SQL()
-TKN = ""  # Don't forget to remove this ;-)
+TKN = "a"  # Don't forget to remove this ;-)
 print(f"Using discord.py version {discord.__version__}")
 client = commands.Bot(command_prefix=sql.get_prefix)
 client.remove_command("help")  # The bot has it's own custom help command, so the default help command is removed
