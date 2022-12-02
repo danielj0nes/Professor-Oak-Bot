@@ -10,7 +10,7 @@ Professor Oak primarily uses the Discord.py (a Python wrapper for the Discord AP
 
 All Pokémon data is sourced from: https://raw.githubusercontent.com/pokemongo-dev-contrib/pokemongo-json-pokedex/master/output/pokemon.json
 
-## Commands showcase
+## Key commands showcase
 
 | Command | Example |
 | ---     | ---     |
